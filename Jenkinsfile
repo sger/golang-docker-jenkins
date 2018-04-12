@@ -14,7 +14,6 @@ pipeline {
         sh 'make build-test'
         sh 'make test-unit'
         sh 'ls'
-        junit 'report/report.xml'
       }
     }
     stage('build image') {
@@ -23,4 +22,10 @@ pipeline {
       }
     }
   }
+  post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
+        }
+    }
 }
