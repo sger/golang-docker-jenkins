@@ -22,10 +22,5 @@ pipeline {
         sh 'make build'
       }
     }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
-        }
-    }
   }
 }
