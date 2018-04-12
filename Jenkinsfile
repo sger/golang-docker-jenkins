@@ -1,6 +1,8 @@
 // this will start an executor on a Jenkins agent with the docker label
 pipeline {
-  agent any
+  agent {
+    docker 'sger/go-docker-ubuntu'
+  }
   stages {
     stage('build base image') {
       steps {
