@@ -14,12 +14,18 @@ pipeline {
         sh 'make build-test'
         sh 'make test-unit'
         sh 'ls'
+        junit 'report/report.xml'
       }
     }
     stage('build image') {
       steps {
         sh 'make build'
       }
+    }
+    post {
+        always {
+            junit 'build/reports/**/*.xml'
+        }
     }
   }
 }
